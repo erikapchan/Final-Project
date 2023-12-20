@@ -276,3 +276,5 @@ Chaudhary, Mukesh. “TF-IDF Vectorizer Scikit-Learn.” Medium, Medium, 28 Jan.
 
 OpenAI. (2023). ChatGPT (Dec 17 version) [Large language model]. https://chat.openai.com/share/646d4794-a958-462b-aa13-ac256bdd0857
     Asked "I am using google colab and have written this code, please add a function to store the the for loop outputs in one list"
+
+“Women Elected Officials by Position.” Women Elected Officials by Position | CAWP Data, cawpdata.rutgers.edu/women-elected-officials/position?current=1&amp;position%5B0%5D=US+Senator&amp;position%5B1%5D=US+Representative&amp;race_ethnicity%5B0%5D=Asian%2FPacific+Islander&amp;race_ethnicity%5B1%5D=Black%2FAfrican+American&amp;race_ethnicity%5B2%5D=Hispanic%2FLatina&amp;race_ethnicity%5B3%5D=Middle+Eastern%2FNorth+African&amp;race_ethnicity%5B4%5D=Multiracial&amp;race_ethnicity%5B5%5D=Native+American&amp;page=1. Accessed 20 Dec. 2023. 
