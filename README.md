@@ -1,5 +1,5 @@
 # Final-Project
-###### Introduction 
+### Introduction 
 
 Race and gender are two of the most prominent and important aspects of identities in society. As most people internal biases both consciously and unconsciously, both race and gender affect how people are treated and perceived in the world, including in politics. I wanted to explore the intersection of these identities in politics, and my research question is “Does the public react to and comment on YouTube videos of people of color (POC) and white Congresswomen differently?”
 
@@ -7,7 +7,7 @@ My hypothesis is that comments on YouTube videos of POC congresswomen will conta
 
 There were a number of historical restrictions to women and people of color holding office, but even presently women and POC make up an unrepresentative small proportion of Congress. One factor making it more difficult for women and women of color to successfully run for office may be the misogyny and racist misogyny they face on the campaign trail and in the job. This project works to gauge public perception and treatment of women in Congress by looking at YouTube comments. It also explores whether racial factors amplify the misogyny Congresswomen face. This project works to draw attention to the social biases regarding race and gender and how it affects politics. 
 
-###### Methods
+### Methods
 
 Firstly, I used data from Rutgers’ Center for American Women and Politics. They keep and update a database of women elected officials and information such as their position, their district, and their race. Using the sample function in Python, I took a random sample of 5 Congresswomen who were white and 5 Congresswomen who were not white. 
 
@@ -21,7 +21,7 @@ For my analysis, I ran CountVectorizer and TFIDFVectorizer to create a count and
 
 Additionally, I looked at the terms with the highest TF-IDF scores to see if there were any patterns or interesting terms that stuck out to me, but they were mostly objects that were likely the topic of the videos. Some examples include people, China, mask, and American. 
 
-###### Results
+### Results
 
 For the first set of words, angry and rude had a higher TF-IDF score for comments under POC Congresswomen’s videos than white Congresswomen. Angry had a score of 0.006481 for POC Congresswomen compared to 0.001148 for white Congresswomen, and rude had 0.009109 and 0. For the terms emotional and loud, the POC video comments had TF-IDF scores of 0, while the white video comments had scores of 0.001613 and 0.004839 respectively. The terms friendly and aggressive did not appear at all in either set of comments. 
 
@@ -29,7 +29,7 @@ Angry is the only term from this list that appears in both set of comments, and 
 
 For the other category of words, which are based on broader racial stereotypes instead of gendered ones, there was a notable difference in TF-IDF scores. For POC video comments, the scores for lazy and stupid were 0.012962 and 0.025924 respectively, while they were 0.001149, and 0.008034 for white comments. This data suggests that POC Congresswomen are more likely to be perceived as having characteristics of negative racial stereotypes such as laziness and stupidity, than white Congresswomen are. 
 
-###### Discussion & conclusion
+### Discussion & conclusion
 There is some limited evidence to suggest my hypothesis is correct, but not strong evidence. I found the results surprising, as I would have expected there to be much larger differences between the TF-IDF scores and as I would have expected the terms in my list to appear a lot more. 
 
 Some limitations of this study are that this study cannot comment on whether women POC policymakers do or do not embody these characteristics more. This project only looks at public perception and comments. Additionally, because I am comparing between women and women of color, I am not providing a baseline for how often these words are used against male members of Congress. In further research, it would be interesting to further explore the gender aspect of my hypothesis by running the methods above with randomly sampled white and POC male congressmen as well. 
