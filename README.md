@@ -187,6 +187,54 @@ trying[trying['term'].str.contains('angry|rude|emotional|bossy|friendly|aggressi
 ```
 trying[trying['term'].str.contains('lazy|stupid')]
 ```
+```
+import numpy as np 
+import matplotlib.pyplot as plt
+```
+```
+barWidth = 0.25
+fig = plt.subplots(figsize =(12, 8)) 
+
+tfidfs = trying[trying['term'].str.contains('angry|rude|emotional|bossy|friendly|aggressive|loud')]
+scores = tfidfs["tfidf"]
+pocscores = scores[0:8]
+whitescores = scores[8:17]
+
+br1 = np.arange(len(pocscores)) 
+br2 = [x + barWidth for x in br1] 
+plt.bar(br1, pocscores, color ='r', width = barWidth, 
+        edgecolor ='grey', label ='POC Scores') 
+plt.bar(br2, whitescores, color ='g', width = barWidth, 
+        edgecolor ='grey', label ='White Score') 
+plt.xticks([r + barWidth for r in range(len(pocscores))], 
+        ['angry', 'cruden', 'emotional', 'emotionally', 'loud','louder','loudly','rude'])
+plt.ylabel('TFIDF Scores', fontweight ='bold', fontsize = 15) 
+
+plt.legend()
+plt.show() 
+```
+```
+barWidth = 0.25
+fig = plt.subplots(figsize =(12, 8)) 
+
+tfidfs2 = trying[trying['term'].str.contains('lazy|stupid')]
+scores2 = tfidfs2["tfidf"]
+pocscores2 = scores2[0:3]
+whitescores2 = scores2[3:6]
+
+br1 = np.arange(len(pocscores2)) 
+br2 = [x + barWidth for x in br1] 
+plt.bar(br1, pocscores2, color ='r', width = barWidth, 
+        edgecolor ='grey', label ='POC Scores') 
+plt.bar(br2, whitescores2, color ='g', width = barWidth, 
+        edgecolor ='grey', label ='White Score') 
+plt.xticks([r + barWidth for r in range(len(pocscores2))], 
+        ['lazy', 'stupid', 'stupider'])
+plt.ylabel('TFIDF Scores', fontweight ='bold', fontsize = 15) 
+
+plt.legend()
+plt.show() 
+```
 For the first set of words, angry and rude had a higher TF-IDF score for comments under POC Congresswomen’s videos than white Congresswomen. Angry had a score of 0.006481 for POC Congresswomen compared to 0.001148 for white Congresswomen, and rude had 0.009109 and 0. For the terms emotional and loud, the POC video comments had TF-IDF scores of 0, while the white video comments had scores of 0.001613 and 0.004839 respectively. The terms friendly and aggressive did not appear at all in either set of comments. 
 <img width="471" alt="image" src="https://github.com/erikapchan/Final-Project/assets/144921862/6380b103-1477-4709-8287-5c77ed8a8228">
 
