@@ -22,6 +22,7 @@ For my analysis, I ran CountVectorizer and TFIDFVectorizer to create a count and
 Additionally, I looked at the terms with the highest TF-IDF scores to see if there were any patterns or interesting terms that stuck out to me, but they were mostly objects that were likely the topic of the videos. Some examples include people, China, mask, and American. 
 
 ### Results
+Please also find the full code in the file in this repository named "Text_Analysis_Final_Project"!
 ```
 import pandas as pd
 from google.colab import files
