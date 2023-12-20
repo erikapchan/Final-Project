@@ -1,4 +1,4 @@
-# Final-Project
+# Final Project
 ### Introduction 
 
 Race and gender are two of the most prominent and important aspects of identities in society. As most people internal biases both consciously and unconsciously, both race and gender affect how people are treated and perceived in the world, including in politics. I wanted to explore the intersection of these identities in politics, and my research question is “Does the public react to and comment on YouTube videos of people of color (POC) and white Congresswomen differently?”
