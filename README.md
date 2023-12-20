@@ -255,7 +255,7 @@ This is a list of terms with the highest TF-IDF scores in each document, but I d
 <img width="219" alt="image" src="https://github.com/erikapchan/Final-Project/assets/144921862/a9d9500d-f404-4157-8f6b-408352b87cc2">
 
 ### Discussion & conclusion
-There is some limited evidence to suggest my hypothesis is correct, but not strong evidence. I found the results surprising, as I would have expected there to be much larger differences between the TF-IDF scores and as I would have expected the terms in my list to appear a lot more. 
+There is some limited evidence to suggest my hypothesis is correct and that comments on YouTube videos of POC congresswomen will contain more misogynistic comments, but not strong evidence. There is some evidence that comments on YouTube video of POC congresswomen contain more language based on racist stereotypes. I found the results surprising, as I would have expected there to be much larger differences between the TF-IDF scores and as I would have expected the terms in my list to appear more frequently in both sets of comments, and a lot more in the POC comments.
 
 Some limitations of this study are that this study cannot comment on whether women POC policymakers do or do not embody these characteristics more. This project only looks at public perception and comments. Additionally, because I am comparing between women and women of color, I am not providing a baseline for how often these words are used against male members of Congress. In further research, it would be interesting to further explore the gender aspect of my hypothesis by running the methods above with randomly sampled white and POC male congressmen as well. 
 
