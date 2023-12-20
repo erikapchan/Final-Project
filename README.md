@@ -34,6 +34,11 @@ whitesample = legislators[legislators["race_ethnicity"] == "White"].sample(5)
 pocsample = legislators[legislators["race_ethnicity"] != "White"].sample(5)
 whitesample, pocsample
 ```
+
+These were the results of my sampling when I ran it.
+<img width="490" alt="image" src="https://github.com/erikapchan/Final-Project/assets/144921862/886ef48e-5d5a-4a37-a962-9af8194dda75">
+
+
 ```
 from googleapiclient.discovery import build
 
