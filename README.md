@@ -22,7 +22,165 @@ For my analysis, I ran CountVectorizer and TFIDFVectorizer to create a count and
 Additionally, I looked at the terms with the highest TF-IDF scores to see if there were any patterns or interesting terms that stuck out to me, but they were mostly objects that were likely the topic of the videos. Some examples include people, China, mask, and American. 
 
 ### Results
+```
+import pandas as pd
+from google.colab import files
+uploaded = files.upload()
+import io
+legislators = pd.read_csv(io.BytesIO(uploaded['officeholders_positions-1702871133.csv']))
+#Sampling
+whitesample = legislators[legislators["race_ethnicity"] == "White"].sample(5)
+pocsample = legislators[legislators["race_ethnicity"] != "White"].sample(5)
+whitesample, pocsample
+```
+```
+from googleapiclient.discovery import build
 
+api_key = "AIzaSyB2WGUKxBl9fi-6E1dV1_237KTlMPWNaWg"
+
+def video_comments(video_id):
+    comments_and_replies = []
+    youtube = build('youtube', 'v3', developerKey=api_key)
+
+    video_response = youtube.commentThreads().list(
+        part='snippet,replies',
+        videoId=video_id
+    ).execute()
+
+    while video_response:
+
+        for item in video_response['items']:
+
+            comment = item['snippet']['topLevelComment']['snippet']['textDisplay']
+
+            replycount = item['snippet']['totalReplyCount']
+
+            if replycount > 0:
+
+                for reply in item['replies']['comments']:
+
+                    reply_text = reply['snippet']['textDisplay']
+
+                    comments_and_replies.append(reply_text)
+            else:
+
+                comments_and_replies.append(comment)
+
+        if 'nextPageToken' in video_response:
+            video_response = youtube.commentThreads().list(
+                part='snippet,replies',
+                videoId=video_id,
+                pageToken=video_response['nextPageToken']
+            ).execute()
+        else:
+            break
+
+    return comments_and_replies
+```
+```
+white_video_ids = ["yvAg6OhMFyU", 'peT7U0ziOxs','GD2qRpGg6io','METLv1ou3c8','fXv4z2E6izk']
+
+all_comments_and_replies = []
+for x in white_video_ids:
+    all_comments_and_replies.extend(video_comments(x))
+
+poc_video_ids = ['ZIW1ECi3ZLE','AcimU7xwpRc','Ze0jW_ysAJ0','kML6_m4ntvU','1DpivHkMd9s']
+
+poc_comments_and_replies = []
+for x in poc_video_ids:
+    poc_comments_and_replies.extend(video_comments(x))
+
+print(len(poc_comments_and_replies))
+print(len(all_comments_and_replies))
+```
+```
+#data cleaning
+import nltk
+import matplotlib
+%matplotlib inline
+import json
+from nltk.tokenize import word_tokenize
+nltk.download('punkt')
+from nltk.corpus import stopwords
+whitecomment = [word_tokenize(comment) for comment in all_comments_and_replies]
+poccomment = [word_tokenize(comment) for comment in poc_comments_and_replies]
+
+poclist = [word for comment in poccomment for word in comment]
+whitelist = [word for comment in whitecomment for word in comment]
+```
+```
+poclist = [t.lower() for t in poclist if t.isalpha()]
+whitelist = [t.lower() for t in whitelist if t.isalpha()]
+nltk.download('stopwords')
+stops = stopwords.words('english')
+nltk.download('averaged_perceptron_tagger')
+poclist = [t for t in poclist if t not in stops]
+whitelist = [t for t in whitelist if t not in stops]
+```
+```
+from nltk.stem import WordNetLemmatizer
+wordnet_lemmatizer = WordNetLemmatizer()
+
+from nltk.corpus import wordnet
+
+def get_wordnet_pos(word):
+    """Map POS tag to first character lemmatize() accepts"""
+    tag = nltk.pos_tag([word])[0][1][0].upper()
+    tag_dict = {"J": wordnet.ADJ,
+                "N": wordnet.NOUN,
+                "V": wordnet.VERB,
+                "R": wordnet.ADV}
+
+    return tag_dict.get(tag, wordnet.NOUN)
+nltk.download('wordnet')
+poclist = [wordnet_lemmatizer.lemmatize(t, get_wordnet_pos(t)) for t in poclist]
+whitelist = [wordnet_lemmatizer.lemmatize(t, get_wordnet_pos(t)) for t in whitelist]
+```
+```
+separator = ' '
+pocdoc = separator.join(poclist)
+whitedoc = separator.join(whitelist)
+```
+```
+!pip install sklearn
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
+import pandas as pd
+pd.options.display.max_rows = 600
+from pathlib import Path
+import glob
+```
+```
+both = [pocdoc,whitedoc]
+```
+```
+countvectorizer = CountVectorizer(analyzer= 'word', stop_words='english')
+tfidfvectorizer = TfidfVectorizer(analyzer='word',stop_words= 'english')
+count_wm = countvectorizer.fit_transform(both)
+tfidf_wm = tfidfvectorizer.fit_transform(both)
+count_tokens = countvectorizer.get_feature_names_out()
+tfidf_tokens = tfidfvectorizer.get_feature_names_out()
+df_countvect = pd.DataFrame(data = count_wm.toarray(),index = ['Doc1','Doc2'],columns = count_tokens)
+df_tfidfvect = pd.DataFrame(data = tfidf_wm.toarray(),index = ['Doc1','Doc2'],columns = tfidf_tokens)
+print("Count Vectorizer\n")
+print(df_countvect)
+print("\nTD-IDF Vectorizer\n")
+print(df_tfidfvect)
+```
+```
+trying = df_tfidfvect.stack().reset_index()
+trying = trying.rename(columns={0:'tfidf', 'level_0': 'document','level_1': 'term'})
+trying = trying.replace("Doc1","poc_comment")
+trying = trying.replace("Doc2","white_comment")
+
+trying.sort_values(by=['document','tfidf'], ascending=[True,False]).groupby(['document']).head(10)
+```
+```
+trying[trying['term'].str.contains('angry|rude|emotional|bossy|friendly|aggressive|loud')]
+```
+```
+trying[trying['term'].str.contains('lazy|stupid')]
+```
 For the first set of words, angry and rude had a higher TF-IDF score for comments under POC Congresswomen’s videos than white Congresswomen. Angry had a score of 0.006481 for POC Congresswomen compared to 0.001148 for white Congresswomen, and rude had 0.009109 and 0. For the terms emotional and loud, the POC video comments had TF-IDF scores of 0, while the white video comments had scores of 0.001613 and 0.004839 respectively. The terms friendly and aggressive did not appear at all in either set of comments. 
 
 Angry is the only term from this list that appears in both set of comments, and the TF-IDF scores suggest that POC Congresswomen are perceived to be more angry. While the scores for emotional, and loud could be indicative of extreme bias, I believe it is more likely due to my sample size. The POC videos contained 235 comments and replies, while the white videos contained 1439 comments. Because the dataset for the white Congresswomen’s videos were much larger and contained more words and these words did not appear in the POC video comments, it can be difficult to draw conclusions about whether emotional and loud are more, less, or equally likely to appear in comments under each type of video. Overall, the data is inconclusive. 
