@@ -201,3 +201,9 @@ Overall, there is some evidence that POC Congresswomen face more biased public p
 
 ### References
 
+Chaudhary, Mukesh. “TF-IDF Vectorizer Scikit-Learn.” Medium, Medium, 28 Jan. 2021, medium.com/@cmukesh8688/tf-idf-vectorizer-scikit-learn-dbc0244a911a. 
+
+“How to Extract YouTube Comments Using YouTube API - Python.” GeeksforGeeks, GeeksforGeeks, 3 Aug. 2023, www.geeksforgeeks.org/how-to-extract-youtube-comments-using-youtube-api-python/. 
+
+OpenAI. (2023). ChatGPT (Dec 17 version) [Large language model]. https://chat.openai.com/share/646d4794-a958-462b-aa13-ac256bdd0857
+    Asked "I am using google colab and have written this code, please add a function to store the the for loop outputs in one list"
