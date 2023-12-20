@@ -190,6 +190,8 @@ trying[trying['term'].str.contains('lazy|stupid')]
 For the first set of words, angry and rude had a higher TF-IDF score for comments under POC Congresswomen’s videos than white Congresswomen. Angry had a score of 0.006481 for POC Congresswomen compared to 0.001148 for white Congresswomen, and rude had 0.009109 and 0. For the terms emotional and loud, the POC video comments had TF-IDF scores of 0, while the white video comments had scores of 0.001613 and 0.004839 respectively. The terms friendly and aggressive did not appear at all in either set of comments. 
 <img width="471" alt="image" src="https://github.com/erikapchan/Final-Project/assets/144921862/6380b103-1477-4709-8287-5c77ed8a8228">
 
+<img width="411" alt="image" src="https://github.com/erikapchan/Final-Project/assets/144921862/abb88e30-698c-45a1-a7a2-726a5cf9b02c">
+
 
 Angry is the only term from this list that appears in both set of comments, and the TF-IDF scores suggest that POC Congresswomen are perceived to be more angry. While the scores for emotional, and loud could be indicative of extreme bias, I believe it is more likely due to my sample size. The POC videos contained 235 comments and replies, while the white videos contained 1439 comments. Because the dataset for the white Congresswomen’s videos were much larger and contained more words and these words did not appear in the POC video comments, it can be difficult to draw conclusions about whether emotional and loud are more, less, or equally likely to appear in comments under each type of video. Overall, the data is inconclusive. 
 
@@ -197,6 +199,9 @@ Angry is the only term from this list that appears in both set of comments, and 
 For the other category of words, which are based on broader racial stereotypes instead of gendered ones, there was a notable difference in TF-IDF scores. For POC video comments, the scores for lazy and stupid were 0.012962 and 0.025924 respectively, while they were 0.001149, and 0.008034 for white comments. This data suggests that POC Congresswomen are more likely to be perceived as having characteristics of negative racial stereotypes such as laziness and stupidity, than white Congresswomen are. 
 
 <img width="334" alt="image" src="https://github.com/erikapchan/Final-Project/assets/144921862/68e63574-8682-4ffc-8a76-bc12d51ba3b9">
+
+<img width="414" alt="image" src="https://github.com/erikapchan/Final-Project/assets/144921862/ada2a4a7-cb01-4fe3-a064-6e4f8c67d4cf">
+
 
 This is a list of terms with the highest TF-IDF scores in each document, but I do not see any terms of note.
 <img width="219" alt="image" src="https://github.com/erikapchan/Final-Project/assets/144921862/a9d9500d-f404-4157-8f6b-408352b87cc2">
